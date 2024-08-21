@@ -59,7 +59,7 @@ class _ProgressCardState extends State<ProgressCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildTag('Done', widget.total.toString()),
+                _buildTag('Done', done.toString()),
                 _buildTag('Total', widget.total.toString()),
               ],
             ),

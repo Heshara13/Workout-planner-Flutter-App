@@ -1,7 +1,7 @@
-import 'package:fifth_app_workout_planner/add_new_page.dart';
-import 'package:fifth_app_workout_planner/favourites_page.dart';
-import 'package:fifth_app_workout_planner/home_page.dart';
-import 'package:fifth_app_workout_planner/profile_page.dart';
+import 'package:fifth_app_workout_planner/Pages/add_new_page.dart';
+import 'package:fifth_app_workout_planner/Pages/favourites_page.dart';
+import 'package:fifth_app_workout_planner/Pages/home_page.dart';
+import 'package:fifth_app_workout_planner/Pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
