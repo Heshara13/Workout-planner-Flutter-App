@@ -49,39 +49,44 @@ class _EquipmentDetailsPageState extends State<EquipmentDetailsPage> {
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(kDefaultPadding),
-        child: Column(
-          children: [
-            Text(
-              widget.euuipmentDescription,
-              style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.normal,
-                  color: kMainBlackColor),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            GridView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  crossAxisSpacing: kDefaultPadding,
-                  mainAxisSpacing: kDefaultPadding),
-              itemBuilder: (context, index) {
-                Equipment equipment =
-                    widget.equipmentList[index]; // think as for loop
-                return EquipmentCard(
-                    equipmentname: equipment.name,
-                    equipmentDescription: equipment.equipmentDescription,
-                    equipmentImageUrl: equipment.equipmentImageUrl,
-                    noOfMinuites: equipment.noOfMinuites,
-                    noOfCalories: equipment.noOfCalories);
-              },
-            )
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(kDefaultPadding),
+          child: Column(
+            children: [
+              Text(
+                widget.euuipmentDescription,
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.normal,
+                    color: kMainBlackColor),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    crossAxisSpacing: kDefaultPadding,
+                    mainAxisSpacing: kDefaultPadding,
+                    childAspectRatio: 3/2,
+                    ),
+                    itemCount: widget.equipmentList.length,
+                itemBuilder: (context, index) {
+                  Equipment equipment =
+                      widget.equipmentList[index]; // think as for loop
+                  return EquipmentCard(
+                      equipmentname: equipment.name,
+                      equipmentDescription: equipment.equipmentDescription,
+                      equipmentImageUrl: equipment.equipmentImageUrl,
+                      noOfMinuites: equipment.noOfMinuites,
+                      noOfCalories: equipment.noOfCalories);
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

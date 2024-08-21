@@ -23,40 +23,49 @@ class EquipmentCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         color: kCardBgColor
       ),
-      child: Column(
-        children: [
-          Text(
-            equipmentname,style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              equipmentname,style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold
+              ),
             ),
-          ),
-          SizedBox(height: 10,),
-          Row(
-            children: [
-              Image.asset(equipmentImageUrl,fit: BoxFit.cover,width: 100,),
-              SizedBox(width: 10,),
-              Column(
-                children: [
-                  Text("${noOfMinuites.toString()} of workout",
-                  style: TextStyle(
-                    color: kSubPinkColor
-                  ),),
-                  Text("${noOfCalories.toString()} of calories burned",
-                  style: TextStyle(
-                    color: kSubPinkColor
-                  ),),
-                ],
-              )
-            ],
-          ),
-          SizedBox(height: 20,),
-          Text(equipmentDescription,style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.normal,
-              color: kMainBlackColor
-            ),)
-        ],
+            SizedBox(height: 10,),
+            Row(
+              children: [
+                Image.asset(equipmentImageUrl,fit: BoxFit.cover,width: 100,),
+                SizedBox(width: 30,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("${noOfMinuites.toString()} of workout",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: kSubPinkColor
+                    ),),
+                    Text("${noOfCalories.toString()} of calories burned",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: kSubPinkColor
+                    ),),
+                  ],
+                )
+              ],
+            ),
+            SizedBox(height: 20,),
+            Text(equipmentDescription,style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+                color: kMainBlackColor
+              ),)
+          ],
+        ),
       ),
     );
   }
