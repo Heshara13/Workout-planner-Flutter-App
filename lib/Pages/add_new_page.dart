@@ -1,8 +1,11 @@
 import 'package:fifth_app_workout_planner/Constants/colors.dart';
 import 'package:fifth_app_workout_planner/Constants/constant_values.dart';
+import 'package:fifth_app_workout_planner/Data/equipment_data.dart';
 import 'package:fifth_app_workout_planner/Data/exercise_data.dart';
 import 'package:fifth_app_workout_planner/Data/user_data.dart';
+import 'package:fifth_app_workout_planner/Models/equipment_model.dart';
 import 'package:fifth_app_workout_planner/Models/exercise_model.dart';
+import 'package:fifth_app_workout_planner/widgets/add_equipment_card.dart';
 import 'package:fifth_app_workout_planner/widgets/add_exercise_card.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +19,7 @@ class AddNewPage extends StatefulWidget {
 class _AddNewPageState extends State<AddNewPage> {
   final userData = user; // import the user
   final exerciseList = ExerciseData().exerciseList; //exerciseList
+  final equipmentList = EquipmentData().equipmentList; //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +73,8 @@ class _AddNewPageState extends State<AddNewPage> {
                         noOfMinutes: exercise.noOfMinuites,
                         exerciseImageUrl: exercise.exerciseImageUrl,
                         isAdded: userData.exerciseList.contains(exercise),
-                        isfavourite: userData.favExerciseList.contains(exercise),
+                        isfavourite:
+                            userData.favExerciseList.contains(exercise),
                         toggleAddExercise: () {
                           setState(() {
                             if (userData.exerciseList.contains(exercise)) {
@@ -90,6 +95,60 @@ class _AddNewPageState extends State<AddNewPage> {
                               userData.addExercise(exercise);
                               print(userData.favExerciseList.length);
                             }
+                          });
+                        },
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                const Text(
+                  "All Equipments",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: kMainBlackColor),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+
+                // list view the scrolls vertically
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: equipmentList.length,
+                    itemBuilder: (context, index) {
+                      Equipment equipment = equipmentList[index];
+
+                      return AddEquipmentCard(
+                        name: equipment.name,
+                        equipmentDescription: equipment.equipmentDescription,
+                        equipmentImageUrl: equipment.equipmentImageUrl,
+                        noOfMinuites: equipment.noOfMinuites,
+                        noOfCalories: equipment.noOfCalories,
+                        isEqAdded: userData.equipmentList.contains(equipment),
+                        isFavEqAdded:
+                            userData.favEquipmentList.contains(equipment),
+                        toggleAddEquipment: () {
+                          setState(() {
+                            if (userData.equipmentList.contains(equipment)) {
+                              userData.removeEquipment(equipment);
+                            } else {
+                              userData.addEquipment(equipment);
+                            }
+                          });
+                        },
+                        toggleAddFavEquipment: () {
+                          setState(() {
+                            if (userData.favEquipmentList.contains(equipment)) {
+                            userData.removeFavEquipment(equipment);
+                          } else {
+                            userData.addFavEquipment(equipment);
+                          }
                           });
                         },
                       );
