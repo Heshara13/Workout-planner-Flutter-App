@@ -65,10 +65,34 @@ class _AddNewPageState extends State<AddNewPage> {
                     itemBuilder: (context, index) {
                       Exercise exercise = exerciseList[index];
                       return AddExerciseCard(
-                          exerciseTitle: exercise.exerciseName,
-                          noOfMinutes: exercise.noOfMinuites,
-                          exerciseImageUrl: exercise.exerciseImageUrl
-                          );
+                        exerciseTitle: exercise.exerciseName,
+                        noOfMinutes: exercise.noOfMinuites,
+                        exerciseImageUrl: exercise.exerciseImageUrl,
+                        isAdded: userData.exerciseList.contains(exercise),
+                        isfavourite: userData.favExerciseList.contains(exercise),
+                        toggleAddExercise: () {
+                          setState(() {
+                            if (userData.exerciseList.contains(exercise)) {
+                              userData.removeExercise(exercise);
+                              print(userData.exerciseList.length);
+                            } else {
+                              userData.addExercise(exercise);
+                              print(userData.exerciseList.length);
+                            }
+                          });
+                        },
+                        toggleAddFavExercise: () {
+                          setState(() {
+                            if (userData.favExerciseList.contains(exercise)) {
+                              userData.removeExercise(exercise);
+                              print(userData.favExerciseList.length);
+                            } else {
+                              userData.addExercise(exercise);
+                              print(userData.favExerciseList.length);
+                            }
+                          });
+                        },
+                      );
                     },
                   ),
                 )
