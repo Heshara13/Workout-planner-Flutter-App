@@ -18,13 +18,13 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final DateFormat formatter = DateFormat('EEEE, MMMM');
   final DateFormat dayFormatter = DateFormat('dd');
+
   final userData = user;
+
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
     String formattedDate = formatter.format(now);
-    final progressValue = userData.;
-    print(progressValue);
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -63,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   height: 15,
                 ),
                 ProgressCard(
-                  progressValue: progressValue,
+                  progressValue: userData.calculateTotalCaloriessBurned(),
                   total: 100,
                 ),
                 const SizedBox(
@@ -91,7 +91,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 15,
                       ),
                       Text(
-                        "Totla Exercises Completed: ${userData.}",
+                        "Totla Exercises Completed: ${userData.totalExerciseCompleted.toString()}",
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -101,7 +101,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         height: 5,
                       ),
                       Text(
-                        "Totla Equipments handovered: ${userData.}",
+                        "Totla Equipments handovered: ${userData.totalEquipmentsHandovered.toString()}",
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -124,17 +124,22 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(
                   height: 15,
                 ),
+
                 // exercises list of the user
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: userData.exerciseList.length,
                   itemBuilder: (context, index) {
-                    Exercise userExercise = userData.exerciseList.[index];
+                    Exercise userExercise = userData.exerciseList[index];
                     return ProfileCard(
                       taskName: userExercise.exerciseName,
                       taskImageUrl:  userExercise.exerciseImageUrl,
-                      markAsDone: () {}
+                      markAsDone: () {
+                        setState(() {
+                          userData.markExerciseAsCompleted(userExercise.id);
+                        });
+                      }
                       );
                   },
                 ),
@@ -152,6 +157,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(
                   height: 15,
                 ),
+
+                // equipment list of the user
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -162,7 +169,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     return ProfileCard(
                       taskName: userEquipment.name, 
                       taskImageUrl: userEquipment.equipmentImageUrl, 
-                      markAsDone: () {}
+                      markAsDone: () {
+                        setState(() {
+                          userData.markAsHandovered(userEquipment.id);
+                        });
+                      }
                     );
                   },
                 ),

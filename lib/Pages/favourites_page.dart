@@ -65,7 +65,7 @@ class _FavouritePageState extends State<FavouritePage> {
                 // exercise gridview
                 GridView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: kDefaultPadding,

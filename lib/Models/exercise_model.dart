@@ -3,7 +3,7 @@ class Exercise {
   final String exerciseName;
   final String exerciseImageUrl;
   final int noOfMinuites;
-  final bool completed;
+  bool completed;
 
   Exercise(
       {
