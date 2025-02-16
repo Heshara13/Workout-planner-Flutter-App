@@ -73,4 +73,22 @@ class User {
   void removeFavEquipment(Equipment equipment) {
     favEquipmentList.remove(equipment);
   }
+
+  // method to calculate the total minutes spend
+  int calculateTotalMinutesSpend() {
+    int tatolMinutesSpend = 0;
+
+    //loop through the exerciseList and calculate the no of minutes
+    for (var exercise in exerciseList) {
+      tatolMinutesSpend += exercise.noOfMinuites;
+    }
+
+    //loop through the exerciseList and calculate the no of minutes
+    for (var equipment in equipmentList) {
+      tatolMinutesSpend += equipment.noOfMinuites;
+    }
+    return tatolMinutesSpend;
+  }
+
+  
 }
